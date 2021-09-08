@@ -1,13 +1,13 @@
 import praw
 from praw.models import MoreComments
+import re
 
-reddit = praw.Reddit(client_id='my_clientid',
+reddit = praw.Reddit(client_id='client_id',
 user_agent='Bee Movie crawler by u/Moose_Hole',
-client_secret='my_secret',
+client_secret='client_secret',
 redirect_uri='http://localhost:8080')
 print(reddit.auth.url(["identity"], "...", "permanent"))
 	
-#submission = reddit.submission(url='https://www.reddit.com/r/AskOuija/comments/ofiegh/dam_i_forgot_the_entire_bee_movie_script_can_you/h4cpba4/')
 submission = reddit.submission('ofiegh')
 file = open("beemovie.txt", "r")
 print("File loaded")
@@ -29,11 +29,19 @@ def doComments(comment):
 			done = done or printIt(reply)
 	return done
 
+def match(character, body):
+	if char == body:
+		return True
+	m = re.search(r"\[([A-Za-z0-9_]+)\]", s)
+	if char == m.group(1):
+		return True
+	return False
+
 def printIt(comment):
 	global char
 	global lastComment
 	global charNumber
-	if not isinstance(comment, MoreComments) and (char == comment.body):
+	if not isinstance(comment, MoreComments) and match(char, comment.body):
 		author = "[deleted]"
 		if comment.author is not None:
 			author = comment.author.name
@@ -42,6 +50,7 @@ def printIt(comment):
 		currentComments.append(comment)
 		return True
 	return False
+
 		
 comment = reddit.comment("h4cpba4")
 comment.refresh()
