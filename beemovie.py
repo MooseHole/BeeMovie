@@ -30,10 +30,10 @@ def doComments(comment):
 	return done
 
 def match(character, body):
-	if char == body:
+	if character == body:
 		return True
-	m = re.search(r"\[([A-Za-z0-9_]+)\]", s)
-	if char == m.group(1):
+	m = re.search(r"\[([A-Za-z0-9_]+)\]", body)
+	if character == m.group(1):
 		return True
 	return False
 
@@ -51,7 +51,6 @@ def printIt(comment):
 		return True
 	return False
 
-		
 comment = reddit.comment("h4cpba4")
 comment.refresh()
 printIt(comment)
