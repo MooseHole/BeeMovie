@@ -12,8 +12,28 @@ submission = reddit.submission('ofiegh')
 file = open("beemovie.txt", "r")
 print("File loaded")
 
-char = file.read(1)
-charNumber = 1
+#startComment = "h4cpba4" # The beginning, number 1
+#startCharNum = 1
+
+#startComment = "h4gdmrg" # After a bunch of deletes, number 1800
+#startCharNum = 1800
+
+startComment = "h4i3y4x" # Used to have a double quote in the example after this, number 2500
+startCharNum = 2500
+
+
+charNumber = 0
+char = ''
+
+def getChar():
+	global char
+	global charNumber
+	char = file.read(1)
+	charNumber = charNumber + 1
+
+for i in range(startCharNum):
+	getChar()
+
 lastComments = []
 currentComments = []
 
@@ -33,7 +53,7 @@ def match(character, body):
 	if character == body:
 		return True
 	m = re.search(r"\[([A-Za-z0-9_]+)\]", body)
-	if character == m.group(1):
+	if m is not None and character == m.group(1):
 		return True
 	return False
 
@@ -51,7 +71,7 @@ def printIt(comment):
 		return True
 	return False
 
-comment = reddit.comment("h4cpba4")
+comment = reddit.comment(startComment)
 comment.refresh()
 printIt(comment)
 
@@ -59,8 +79,7 @@ lastComments = currentComments.copy()
 currentComments = []
 
 while 1:
-	char = file.read(1)
-	charNumber = charNumber + 1
+	getChar()
 	done = False
 	for comment in lastComments:
 		done = done or doComments(comment)
@@ -70,7 +89,10 @@ while 1:
 		for comment in lastComments:
 			done = done or doComments(comment)
 		if not done:
-			print("NO MATCH, end")
+			lastCommentList = ""
+			for c in lastComments:
+				lastCommentList = lastCommentList + c.id + " "
+			print("NO MATCH for character " + char + " in comment ids " + lastCommentList + ", end")
 			break
 
 	lastComments = currentComments.copy()
