@@ -18,9 +18,26 @@ print("File loaded")
 #startComment = "h4gdmrg" # After a bunch of deletes, number 1800
 #startCharNum = 1800
 
-startComment = "h4i3y4x" # Used to have a double quote in the example after this, number 2500
-startCharNum = 2500
+#startComment = "h4i3y4x" # Used to have a double quote in the example after this, number 2500
+#startCharNum = 2500
 
+#startComment = "h4s1r4c" # Was a typo at character 4995, number 4990
+#startCharNum = 4990
+
+#startComment = "h6xiktp" # Had a colon after this, number 13750
+#startCharNum = 13750
+
+#startComment = "h7hhtaj" # Was typo in Kasell character 15536, number 15530
+#startCharNum = 15530
+
+#startComment = "h7p3uvu" # Script got hung up at 15779, number 15779
+#startCharNum = 15779
+
+startComment = "h8m7lsa" # A lower case letter was used at 17409, number 17405
+startCharNum = 17405
+
+startComment = "hc09hui" # Script got hung up at 25430, number 25430
+startCharNum = 25430
 
 charNumber = 0
 char = ''
